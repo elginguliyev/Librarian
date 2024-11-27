@@ -10,6 +10,8 @@ import lombok.Data;
 @Data
 public class User {
     @Id
-    String username;
-    String password;
+    private String username;
+    private String password;
+    private Integer enabled;
+
 }
