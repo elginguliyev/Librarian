@@ -6,27 +6,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "librarian")
-public class Librarian {
+@Table(name = "student")
+public class Student {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String surnama;
+    private String surname;
     private String username;
+    private String password;
     private String address;
     private String phone;
     private String email;
-    private String password;
-    private LocalDateTime registerDate;
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToMany(mappedBy = "librarian", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Library> libraryList;
+    private LocalDateTime registerDate;
+
+
 }

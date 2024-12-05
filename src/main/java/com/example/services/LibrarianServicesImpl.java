@@ -1,6 +1,7 @@
 package com.example.services;
 
 import com.example.entities.Librarian;
+import com.example.entities.Role;
 import com.example.repository.LibrarianRepository;
 import com.example.request.LibrarianRequest;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ public class LibrarianServicesImpl {
     public void add(LibrarianRequest request) {
         Librarian librarian = new Librarian();
         modelMapper.map(request, librarian);
+        librarian.setRole(Role.ROLE_LIBRARIAN);
         librarian.setRegisterDate(LocalDateTime.now());
         librarianRepository.save(librarian);
     }

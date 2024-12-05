@@ -4,14 +4,14 @@ import com.example.entities.Role;
 import lombok.Data;
 
 @Data
-public class LibrarianRequest {
+public class StudentRequest {
 
     private String name;
-    private String surnama;
+    private String surname;
     private String username;
+    private String password;
     private String address;
     private String phone;
     private String email;
-    private String password;
     private Role role;
 }
