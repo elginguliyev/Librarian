@@ -29,4 +29,6 @@ public class Librarian {
     private Role role;
     @OneToMany(mappedBy = "librarian", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Library> libraryList;
+    @OneToMany(mappedBy = "librarian", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Book> books;
 }

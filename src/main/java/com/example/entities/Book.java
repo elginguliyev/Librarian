@@ -31,5 +31,9 @@ public class Book {
     @JoinColumn(name = "library_id", nullable = false)
     private Library library;
 
+    @ManyToOne
+    @JoinColumn(name = "librarian_id", nullable = false)
+    private Librarian librarian;
+
 
 }
