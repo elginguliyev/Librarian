@@ -2,9 +2,13 @@ package com.example.services;
 
 import com.example.entities.Librarian;
 import com.example.entities.Role;
+import com.example.entities.User;
+import com.example.repository.AutorityRepositroy;
 import com.example.repository.LibrarianRepository;
+import com.example.repository.UserRepository;
 import com.example.request.LibrarianRequest;
 import com.example.request.LibraryRequest;
+import com.example.response.LibrarianResponse;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +22,9 @@ public class LibrarianServicesImpl {
 
     private final ModelMapper modelMapper;
     private final LibrarianRepository librarianRepository;
+    private final UserServicesImpl userServices;
+    private final UserRepository userRepository;
+    private final AutorityRepositroy autorityRepositroy;
 
 
     public void add(LibrarianRequest request) {
@@ -28,23 +35,26 @@ public class LibrarianServicesImpl {
         librarianRepository.save(librarian);
     }
 
-    public LibrarianRequest getLibrarian() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Librarian librarian = librarianRepository.findByUsername(username);
-        LibrarianRequest request = new LibrarianRequest();
-        modelMapper.map(librarian, request);
-        return request;
+    public LibrarianResponse getLibrarian() {
+        User user = userServices.findUsername();
+        Librarian librarian = librarianRepository.findByUsername(user.getUsername());
+        LibrarianResponse response = new LibrarianResponse();
+        modelMapper.map(librarian, response);
+        return response;
     }
 
     public void remove() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Librarian librarian = librarianRepository.findByUsername(username);
+        User user = userServices.findUsername();
+        Librarian librarian = librarianRepository.findByUsername(user.getUsername());
         librarianRepository.delete(librarian);
+        userRepository.delete(user);
+        autorityRepositroy.removeUsernameAuth(user.getUsername());
+
     }
 
     public void update(LibrarianRequest request) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Librarian librarian = librarianRepository.findByUsername(username);
+        User user = userServices.findUsername();
+        Librarian librarian = librarianRepository.findByUsername(user.getUsername());
         modelMapper.map(request, librarian);
         librarianRepository.save(librarian);
     }

@@ -6,6 +6,7 @@ import com.example.repository.UserRepository;
 import com.example.request.LibrarianRequest;
 import com.example.request.StudentRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -38,6 +39,13 @@ public class UserServicesImpl {
         userRepository.save(user);
         autorityRepositroy.addStudentAuth(req.getUsername());
         studentServices.add(req);
+    }
+
+    public User findUsername() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return user;
     }
 
 }

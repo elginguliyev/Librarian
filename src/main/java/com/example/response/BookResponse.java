@@ -1,12 +1,12 @@
-package com.example.request;
+package com.example.response;
 
 import lombok.Data;
 
 import java.time.LocalDate;
 
 @Data
-public class BookRequest {
-    private Long id;
+public class BookResponse {
+    
     private String name;
     private String description;
     private String author;
@@ -14,5 +14,4 @@ public class BookRequest {
     private Double price;
     private String language;
     private LocalDate publishDate;
-    private Long libraryId;
 }

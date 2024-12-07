@@ -25,10 +25,13 @@ public class Librarian {
     private String email;
     private String password;
     private LocalDateTime registerDate;
+
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToMany(mappedBy = "librarian", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Library> libraryList;
-    @OneToMany(mappedBy = "librarian", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToOne(mappedBy = "librarian", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Library library;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> books;
 }
