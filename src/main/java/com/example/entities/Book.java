@@ -33,7 +33,7 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "librarian_id", nullable = false)
-    private User user;
+    private Librarian librarian;
 
 
 }

@@ -32,6 +32,6 @@ public class Librarian {
     @OneToOne(mappedBy = "librarian", cascade = CascadeType.ALL, orphanRemoval = true)
     private Library library;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "librarian", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> books;
 }

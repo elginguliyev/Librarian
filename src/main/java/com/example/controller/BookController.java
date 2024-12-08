@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "book/")
-public class BookController {
+public class  BookController {
 
     private final BookServicesImpl bookServices;
 
