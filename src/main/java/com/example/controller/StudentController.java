@@ -2,8 +2,10 @@ package com.example.controller;
 
 import com.example.request.StudentRequest;
 import com.example.response.StudentResponse;
-import com.example.services.StudentServicesImpl;
-import com.example.services.UserServicesImpl;
+import com.example.service_impl.StudentServicesImpl;
+import com.example.service_impl.UserServicesImpl;
+import com.example.services.StudentService;
+import com.example.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "student")
+@RequestMapping(path = "/student/")
 public class StudentController {
 
-    private final UserServicesImpl userServices;
-    private final StudentServicesImpl studentServices;
+    private final UserService userServices;
+    private final StudentService studentServices;
 
 
     @PostMapping
@@ -26,10 +28,10 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping
+    @GetMapping(path = "id=")
     @PreAuthorize("hasAuthority('ROLE_GET_STUDENT')")
     public ResponseEntity<StudentResponse> getStudent() {
-        StudentResponse response = studentServices.getStdent();
+        StudentResponse response = studentServices.getStudent();
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 

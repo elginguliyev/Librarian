@@ -18,7 +18,7 @@ public class Librarian {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String surnama;
+    private String surname;
     private String username;
     private String address;
     private String phone;

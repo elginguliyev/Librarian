@@ -2,10 +2,9 @@ package com.example.controller;
 
 import com.example.request.LibrarianRequest;
 import com.example.response.LibrarianResponse;
-import com.example.services.LibrarianServicesImpl;
-import com.example.services.UserServicesImpl;
+import com.example.service_impl.LibrarianServicesImpl;
+import com.example.service_impl.UserServicesImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,14 +12,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "librarian")
+@RequestMapping(path = "/librarian")
 public class LibrarianController {
 
     private final UserServicesImpl userServices;
     private final LibrarianServicesImpl librarianServices;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ROLE_CREAT_LIBRARIAN')")
+//    @PreAuthorize("hasAuthority('ROLE_CREAT_LIBRARIAN')")
     public ResponseEntity<Void> addLibrarian(@RequestBody LibrarianRequest req) {
         userServices.addLibrarian(req);
         return ResponseEntity.status(HttpStatus.CREATED).build();

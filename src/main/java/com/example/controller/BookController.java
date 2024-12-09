@@ -3,19 +3,24 @@ package com.example.controller;
 import com.example.request.BookRequest;
 import com.example.response.BookListResponse;
 import com.example.response.BookResponse;
-import com.example.services.BookServicesImpl;
+import com.example.services.BookService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequiredArgsConstructor
-@RequestMapping(path = "book/")
-public class  BookController {
+@RequestMapping(path = "/book/")
+public class BookController {
 
-    private final BookServicesImpl bookServices;
+    private final BookService bookServices;
+
+    @Autowired
+    public BookController(BookService bookServices) {
+        this.bookServices = bookServices;
+    }
 
     @PostMapping
     @PreAuthorize("hasAuthority('ROLE_ADD_BOOK')")

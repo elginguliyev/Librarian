@@ -1,4 +1,4 @@
-package com.example.services;
+package com.example.service_impl;
 
 import com.example.entities.Librarian;
 import com.example.entities.Library;
@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class LibrariyServicesImpl {
 
     private final LibrarianRepository repository;
