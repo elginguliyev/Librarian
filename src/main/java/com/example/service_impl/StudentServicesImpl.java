@@ -1,14 +1,12 @@
 package com.example.service_impl;
 
 import com.example.config.ExsistUser;
-import com.example.entities.Role;
 import com.example.entities.Student;
 import com.example.entities.User;
 import com.example.repository.StudentRepository;
 import com.example.request.StudentRequest;
 import com.example.response.StudentResponse;
 import com.example.services.StudentService;
-import com.example.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -27,7 +25,8 @@ public class StudentServicesImpl implements StudentService {
     public void add(StudentRequest req) {
         Student student = new Student();
         mapper.map(req, student);
-        student.setRole(Role.ROLE_STUDENT);
+        student.setPassword("{noop}"+ req.getPassword());
+//        student.setRole(Role.ROLE_STUDENT);
         student.setRegisterDate(LocalDateTime.now());
         studentRepository.save(student);
     }

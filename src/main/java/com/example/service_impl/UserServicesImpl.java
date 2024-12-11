@@ -21,13 +21,12 @@ public class UserServicesImpl implements UserService {
     private final LibrarianService librarianService;
     private final StudentServicesImpl studentServices;
     private final AutorityRepositroy autorityRepositroy;
-    private final PasswordEncoder encoder;
 
     @Override
     public void addLibrarian(LibrarianRequest req) {
         User user = new User();
         user.setUsername(req.getUsername());
-        user.setPassword(encoder.encode(req.getPassword()));
+        user.setPassword("{noop}"+ req.getPassword());
         user.setEnabled(1);
         userRepository.save(user);
         autorityRepositroy.addLibrarianAuth(req.getUsername());
@@ -38,7 +37,7 @@ public class UserServicesImpl implements UserService {
     public void addStudent(StudentRequest req) {
         User user = new User();
         user.setUsername(req.getUsername());
-        user.setPassword("{noop}" + req.getPassword());
+        user.setPassword("{noop}"+ req.getPassword());
         user.setEnabled(1);
         userRepository.save(user);
         autorityRepositroy.addStudentAuth(req.getUsername());

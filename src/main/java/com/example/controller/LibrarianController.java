@@ -26,21 +26,21 @@ public class LibrarianController {
     }
 
     @DeleteMapping
-    @PreAuthorize("hasAuthority('ROLE_DELETE_LIBRARIAN')")
+    @PreAuthorize(value = "hasAuthority('ROLE_DELETE_LIBRARIAN')")
     public ResponseEntity<Void> remove() {
         librarianServices.remove();
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ROLE_UPDATE_LIBRARIAN')")
+    @PreAuthorize(value = "hasAuthority('ROLE_UPDATE_LIBRARIAN')")
     public ResponseEntity<Void> update(@RequestBody LibrarianRequest req) {
         librarianServices.update(req);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ROLE_GET_LIBRARIAN')")
+    @PreAuthorize(value = "hasAuthority('ROLE_GET_LIBRARIAN')")
     public ResponseEntity<LibrarianResponse> getLibrarian() {
         LibrarianResponse response = librarianServices.getLibrarian();
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

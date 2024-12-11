@@ -2,17 +2,13 @@ package com.example.service_impl;
 
 import com.example.config.ExsistUser;
 import com.example.entities.Librarian;
-import com.example.entities.Role;
 import com.example.entities.User;
 import com.example.repository.LibrarianRepository;
 import com.example.request.LibrarianRequest;
 import com.example.response.LibrarianResponse;
 import com.example.services.LibrarianService;
-import com.example.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,14 +19,13 @@ public class LibrarianServicesImpl implements LibrarianService {
     private final ModelMapper modelMapper;
     private final LibrarianRepository librarianRepository;
     private final ExsistUser exsistUser;
-    private final PasswordEncoder encoder;
 
     @Override
     public void add(LibrarianRequest request) {
         Librarian librarian = new Librarian();
         modelMapper.map(request, librarian);
-        librarian.setPassword(encoder.encode(request.getPassword()));
-        librarian.setRole(Role.ROLE_LIBRARIAN);
+        librarian.setPassword("{noop}"+ request.getPassword());
+//        librarian.setRole(Role.ROLE_LIBRARIAN);
         librarian.setRegisterDate(LocalDateTime.now());
         librarianRepository.save(librarian);
     }

@@ -26,8 +26,8 @@ public class Librarian {
     private String password;
     private LocalDateTime registerDate;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+//    @Enumerated(EnumType.STRING)
+//    private Role role;
 
     @OneToOne(mappedBy = "librarian", cascade = CascadeType.ALL, orphanRemoval = true)
     private Library library;

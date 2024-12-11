@@ -23,8 +23,8 @@ public class Student {
     private String address;
     private String phone;
     private String email;
-    @Enumerated(EnumType.STRING)
-    private Role role;
+//    @Enumerated(EnumType.STRING)
+//    private Role role;
     private LocalDateTime registerDate;
 
 
