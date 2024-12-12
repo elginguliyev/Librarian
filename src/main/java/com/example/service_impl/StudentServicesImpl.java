@@ -25,7 +25,7 @@ public class StudentServicesImpl implements StudentService {
     public void add(StudentRequest req) {
         Student student = new Student();
         mapper.map(req, student);
-        student.setPassword("{noop}"+ req.getPassword());
+        student.setPassword("{noop}" + req.getPassword());
 //        student.setRole(Role.ROLE_STUDENT);
         student.setRegisterDate(LocalDateTime.now());
         studentRepository.save(student);
@@ -50,6 +50,24 @@ public class StudentServicesImpl implements StudentService {
     public StudentResponse getStudent() {
         User user = exsistUser.findUsername();
         Student student = studentRepository.findByUsername(user.getUsername());
+        StudentResponse response = new StudentResponse();
+        mapper.map(student, response);
+        return response;
+    }
+
+    @Override
+    public StudentResponse getStudentById(Long id) {
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+
+        StudentResponse response = new StudentResponse();
+        mapper.map(student, response);
+        return response;
+    }
+
+    @Override
+    public StudentResponse findStudent(String username) {
+        Student student = studentRepository.findByUsername(username);
         StudentResponse response = new StudentResponse();
         mapper.map(student, response);
         return response;

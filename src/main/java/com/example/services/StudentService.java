@@ -12,4 +12,9 @@ public interface StudentService {
     void update(StudentRequest request);
 
     StudentResponse getStudent();
+
+    StudentResponse getStudentById(Long id);
+
+    StudentResponse findStudent(String username);
+
 }

@@ -26,7 +26,7 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping(path = "/id=")
+    @GetMapping
     @PreAuthorize(value = "hasAuthority('ROLE_GET_STUDENT')")
     public ResponseEntity<StudentResponse> getStudent() {
         StudentResponse response = studentServices.getStudent();
@@ -49,7 +49,15 @@ public class StudentController {
 
     @GetMapping
     @PreAuthorize(value = "hasAuthority('ROLE_FIND_STUDENT')")
-    public ResponseEntity<Void> findStudent(@RequestParam String name) {
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<StudentResponse> findStudent(@RequestParam String username) {
+        StudentResponse response = studentServices.findStudent(username);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping(path = "/id=")
+    @PreAuthorize(value = "hasAuthority('ROLE_GET_STUDENT')")
+    public ResponseEntity<StudentResponse> getStudentById(@PathVariable Long id) {
+        StudentResponse response = studentServices.getStudentById(id);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }
