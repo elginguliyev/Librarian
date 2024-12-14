@@ -26,7 +26,6 @@ public class StudentServicesImpl implements StudentService {
         Student student = new Student();
         mapper.map(req, student);
         student.setPassword("{noop}" + req.getPassword());
-//        student.setRole(Role.ROLE_STUDENT);
         student.setRegisterDate(LocalDateTime.now());
         studentRepository.save(student);
     }

@@ -2,16 +2,13 @@ package com.example.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Locale;
 
 @Entity
-@Table(name = "book_rental")
+@Table(name = "book_rents")
 @Data
-public class BookRental {
+public class BookRents {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +22,11 @@ public class BookRental {
     @JoinColumn(name = "book_id")
     private Book book;
 
-    private LocalDateTime rentalDate;
+    @ManyToOne
+    @JoinColumn(name = "librarian_id")
+    private Librarian librarian;
+
+    private LocalDateTime rentsDate;
 
     private LocalDateTime returnDate;
 
