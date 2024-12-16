@@ -1,6 +1,5 @@
 package com.example.request;
 
-import com.example.entities.Role;
 import lombok.Data;
 
 @Data
@@ -13,4 +12,5 @@ public class StudentRequest {
     private String address;
     private String phone;
     private String email;
+    private Long LibID;
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/student")
+@RequestMapping(path = "/library/student")
 public class StudentController {
 
     private final UserService userServices;
