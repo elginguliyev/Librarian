@@ -32,14 +32,14 @@ public class StudentServicesImpl implements StudentService {
         mapper.map(req, student);
         student.setPassword("{noop}" + req.getPassword());
         student.setRegisterDate(LocalDateTime.now());
-        student.setLibrary(library);
+        student.setLibraryId(library.getId());
         studentRepository.save(student);
     }
 
     @Override
-    public void remove() {
+    public void remove(Long studentId) {
         User user = exsistUser.findUsername();
-        Student student = studentRepository.findByUsername(user.getUsername());
+        Student student = studentRepository.findByUsernameAndStudentId(user.getUsername(), studentId);
         studentRepository.delete(student);
     }
 

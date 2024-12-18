@@ -7,7 +7,7 @@ public interface StudentService {
 
     void add(StudentRequest request);
 
-    void remove();
+    void remove(Long studentId);
 
     void update(StudentRequest request);
 

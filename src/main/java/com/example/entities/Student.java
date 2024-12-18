@@ -24,7 +24,5 @@ public class Student {
     private String phone;
     private String email;
     private LocalDateTime registerDate;
-    @ManyToOne
-    @JoinColumn(name = "library_id")
-    private Library library;
+    private Long libraryId;
 }
