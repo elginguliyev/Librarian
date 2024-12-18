@@ -7,17 +7,22 @@ import com.example.repository.BookRepository;
 import com.example.repository.LibrarianRepository;
 import com.example.repository.StudentRepository;
 import com.example.request.BookRentsRequest;
+import com.example.response.BookRentListResponse;
+import com.example.response.BookRentResponse;
 import com.example.services.BookRentsService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class BookRentsServicesImpl implements BookRentsService {
 
+    private final ModelMapper mapper;
     private final ExsistUser exsistUser;
     private final StudentRepository studentRepository;
     private final LibrarianRepository librarianRepository;
@@ -45,7 +50,48 @@ public class BookRentsServicesImpl implements BookRentsService {
     }
 
     @Override
-    public void returnBook() {
+    public void returnBook(Long studentId, Long bookId) {
+        BookRents bookRents = rentRepository.findBookRent(studentId, bookId);
+        bookRents.setReturnDate(LocalDateTime.now());
 
+        rentRepository.save(bookRents);
+
+    }
+
+    @Override
+    public BookRentListResponse showRentBook() {
+
+        BookRentListResponse listResponse = new BookRentListResponse();
+        List<BookRents> bookRents = rentRepository.showRentBook();
+
+        List<BookRentResponse> bookRentResponses = new ArrayList<>();
+
+        for (BookRents rents : bookRents) {
+            BookRentResponse rentResponse = new BookRentResponse();
+            mapper.map(rents, rentResponse);
+            bookRentResponses.add(rentResponse);
+        }
+
+        listResponse.setRentResponses(bookRentResponses);
+
+        return listResponse;
+    }
+
+    @Override
+    public BookRentListResponse showRetrunBook() {
+        BookRentListResponse listResponse = new BookRentListResponse();
+        List<BookRents> bookRents = rentRepository.ShowRetrunBook();
+
+        List<BookRentResponse> bookRentResponses = new ArrayList<>();
+
+        for (BookRents rents : bookRents) {
+            BookRentResponse rentResponse = new BookRentResponse();
+            mapper.map(rents, rentResponse);
+            bookRentResponses.add(rentResponse);
+        }
+
+        listResponse.setRentResponses(bookRentResponses);
+
+        return listResponse;
     }
 }

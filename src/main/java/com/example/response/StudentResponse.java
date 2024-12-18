@@ -1,8 +1,5 @@
 package com.example.response;
 
-import com.example.entities.Role;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.Data;
 
 import java.time.LocalDateTime;

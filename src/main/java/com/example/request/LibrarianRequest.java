@@ -1,6 +1,5 @@
 package com.example.request;
 
-import com.example.entities.Role;
 import lombok.Data;
 
 @Data

@@ -13,7 +13,7 @@ public class BookRentResponse {
 
     private Long bookId;
 
-    private LocalDateTime rebtsDate;
+    private LocalDateTime rentsDate;
 
     private LocalDateTime returnDate;
 

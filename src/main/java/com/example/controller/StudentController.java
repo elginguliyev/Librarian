@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/library/student")
+@RequestMapping(path = "/student")
 public class StudentController {
 
     private final UserService userServices;
@@ -47,14 +47,14 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping
+    @GetMapping(path = "search")
     @PreAuthorize(value = "hasAuthority('ROLE_FIND_STUDENT')")
     public ResponseEntity<StudentResponse> findStudent(@RequestParam String username) {
         StudentResponse response = studentServices.findStudent(username);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @GetMapping(path = "/id=")
+    @GetMapping(path = "/{id}")
     @PreAuthorize(value = "hasAuthority('ROLE_GET_STUDENT')")
     public ResponseEntity<StudentResponse> getStudentById(@PathVariable Long id) {
         StudentResponse response = studentServices.getStudentById(id);
