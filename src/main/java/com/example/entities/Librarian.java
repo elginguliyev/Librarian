@@ -26,8 +26,7 @@ public class Librarian {
     private String password;
     private LocalDateTime registerDate;
 
-    @OneToOne(mappedBy = "librarian", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Library library;
+    private Long libraryId;
 
     @OneToMany(mappedBy = "librarian", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> books;

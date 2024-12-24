@@ -11,12 +11,12 @@ import java.util.List;
 public interface BookRentRepository extends JpaRepository<BookRents, Long> {
 
 
-    @Query(value = "select * from authority_list where student_id=?1 and book_id=?2", nativeQuery = true)
+    @Query(value = "select * from book_rents where student_id=?1 and book_id=?2", nativeQuery = true)
     BookRents findBookRent(Long studentId, Long bookId);
 
-    @Query(value = "select * from authority_list where return_date is null", nativeQuery = true)
+    @Query(value = "select * from book_rents where return_date is null", nativeQuery = true)
     List<BookRents> showRentBook();
 
-    @Query(value = "select * from authority_list where return_date is not null", nativeQuery = true)
+    @Query(value = "select * from book_rents where return_date is not null", nativeQuery = true)
     List<BookRents> ShowRetrunBook();
 }

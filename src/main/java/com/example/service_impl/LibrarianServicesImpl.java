@@ -24,7 +24,6 @@ public class LibrarianServicesImpl implements LibrarianService {
     public void add(LibrarianRequest request) {
         Librarian librarian = new Librarian();
         modelMapper.map(request, librarian);
-        librarian.setPassword("{noop}"+ request.getPassword());
         librarian.setRegisterDate(LocalDateTime.now());
         librarianRepository.save(librarian);
     }

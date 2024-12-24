@@ -9,9 +9,9 @@ public class BookRentsRequest {
 
     private Long studentId;
     private Long bookId;
-    private  Long librarianId;
-    private LocalDateTime rentsDate;
-    private LocalDateTime returnDate;
+//    private  Long librarianId;
+//    private LocalDateTime rentsDate;
+//    private LocalDateTime returnDate;
 
 
 }

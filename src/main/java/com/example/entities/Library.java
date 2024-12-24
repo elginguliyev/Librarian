@@ -29,9 +29,7 @@ public class Library {
 
     private LocalDate establishedDate;
 
-    @OneToOne
-    @JoinColumn(name = "librarian_id", nullable = false)
-    private Librarian librarian;
+    private Long librarianId;
 
     @OneToMany(mappedBy = "library", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> books;

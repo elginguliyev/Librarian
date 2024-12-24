@@ -35,8 +35,8 @@ public class BookServicesImpl implements BookService {
     public void add(BookRequest req) {
         User user = exsistUser.findUsername();
         Librarian librarian = librarianRepository.findByUsername(user.getUsername());
-        Library library = libraryRepository.findByLibrarian(librarian).
-                orElseThrow(() -> new RuntimeException("Library not found"));
+        Library library = libraryRepository.findByLibrarianId(librarian.getId());
+
 
         Book book = new Book();
         mapper.map(req, book);

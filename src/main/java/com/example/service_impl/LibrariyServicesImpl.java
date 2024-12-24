@@ -28,7 +28,7 @@ public class LibrariyServicesImpl implements LibraryService {
         Librarian librarian = repository.findByUsername(username);
         Library library = new Library();
         mapper.map(req, library);
-        library.setLibrarian(librarian);
+        library.setLibrarianId(librarian.getId());
         library.setEstablishedDate(LocalDate.now());
         libRepository.save(library);
     }

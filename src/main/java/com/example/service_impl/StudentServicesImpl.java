@@ -1,9 +1,11 @@
 package com.example.service_impl;
 
 import com.example.config.ExsistUser;
+import com.example.entities.Librarian;
 import com.example.entities.Library;
 import com.example.entities.Student;
 import com.example.entities.User;
+import com.example.repository.LibrarianRepository;
 import com.example.repository.LibraryRepository;
 import com.example.repository.StudentRepository;
 import com.example.request.StudentRequest;
@@ -23,14 +25,16 @@ public class StudentServicesImpl implements StudentService {
     private final ExsistUser exsistUser;
     private final StudentRepository studentRepository;
     private final LibraryRepository libraryRepository;
+    private final LibrarianRepository librarianRepository;
 
     @Override
     public void add(StudentRequest req) {
-        Library library = libraryRepository.findById(req.getLibID())
-                .orElseThrow(() -> new RuntimeException("Library not  found"));
+        User user = exsistUser.findUsername();
+        Librarian librarian = librarianRepository.findByUsername(user.getUsername());
+        Library library = libraryRepository.findByLibrarianId(librarian.getId());
+
         Student student = new Student();
         mapper.map(req, student);
-        student.setPassword("{noop}" + req.getPassword());
         student.setRegisterDate(LocalDateTime.now());
         student.setLibraryId(library.getId());
         studentRepository.save(student);
