@@ -1,6 +1,5 @@
 package com.example.service_impl;
 
-import com.example.config.ExsistUser;
 import com.example.entities.User;
 import com.example.repository.AutorityRepositroy;
 import com.example.repository.UserRepository;
@@ -9,7 +8,6 @@ import com.example.request.StudentRequest;
 import com.example.services.LibrarianService;
 import com.example.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +19,13 @@ public class UserServicesImpl implements UserService {
     private final LibrarianService librarianService;
     private final StudentServicesImpl studentServices;
     private final AutorityRepositroy autorityRepositroy;
+    private final PasswordEncoder encoder;
 
     @Override
     public void addLibrarian(LibrarianRequest req) {
         User user = new User();
         user.setUsername(req.getUsername());
-        user.setPassword("{noop}"+ req.getPassword());
+        user.setPassword("{noop}"+ encoder.encode(req.getPassword()));
         user.setEnabled(1);
         userRepository.save(user);
         autorityRepositroy.addLibrarianAuth(req.getUsername());
@@ -37,7 +36,7 @@ public class UserServicesImpl implements UserService {
     public void addStudent(StudentRequest req) {
         User user = new User();
         user.setUsername(req.getUsername());
-        user.setPassword("{noop}"+ req.getPassword());
+        user.setPassword("{noop}"+ encoder.encode(req.getPassword()));
         user.setEnabled(1);
         userRepository.save(user);
         autorityRepositroy.addStudentAuth(req.getUsername());

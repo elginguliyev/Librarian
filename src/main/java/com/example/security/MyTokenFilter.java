@@ -14,9 +14,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-@Component
+
 @RequiredArgsConstructor
-public class TokenFilter extends OncePerRequestFilter {
+public class MyTokenFilter extends OncePerRequestFilter {
 
     private final MyTokenManager myTokenManager;
     private final MyUserDetailServices myUserDetailServices;
