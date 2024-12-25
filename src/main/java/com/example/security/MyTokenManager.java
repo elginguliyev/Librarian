@@ -2,16 +2,23 @@ package com.example.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.Key;
+import java.util.Base64;
 import java.util.Date;
 
 @Component
 public class MyTokenManager {
 
-    private final String JWT_SECRET = "your_secret_key";
+    private final SecretKey JWT_SECRET = Keys.secretKeyFor(SignatureAlgorithm.HS512);
     private final long JWT_EXPIRATION = 86400000; // 1 day
+
+
 
     public String generateToken(String username) {
         return Jwts.builder()
