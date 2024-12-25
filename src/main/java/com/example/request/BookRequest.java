@@ -6,7 +6,6 @@ import java.time.LocalDate;
 
 @Data
 public class BookRequest {
-    private Long id;
     private String name;
     private String description;
     private String author;

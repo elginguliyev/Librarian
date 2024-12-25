@@ -42,20 +42,21 @@ public class SecurityConfig {
 
     private final MyUserDetailServices userDetailsService;
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        JdbcDaoImpl jdbcDao = new JdbcDaoImpl();
-        jdbcDao.setDataSource(dataSource);
-        return jdbcDao;
-    }
-
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-
-        return authProvider;
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        JdbcDaoImpl jdbcDao = new JdbcDaoImpl();
+//        jdbcDao.setDataSource(dataSource);
+//        return jdbcDao;
+//    }
+//
+//    @Bean
+//    public AuthenticationProvider authenticationProvider() {
+//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+//        authProvider.setUserDetailsService(userDetailsService());
+//        authProvider.setPasswordEncoder(passwordEncoder());
+//
+//        return authProvider;
+//    }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {

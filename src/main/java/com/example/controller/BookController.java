@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/book")
+@CrossOrigin("*")
 public class BookController {
 
     private final BookService bookServices;
@@ -42,10 +43,10 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @PutMapping
+    @PutMapping(path = "/{bookId}")
     @PreAuthorize(value = "hasAuthority('ROLE_UPDATE_BOOK')")
-    public ResponseEntity<Void> update(@RequestBody BookRequest req) {
-        bookServices.update(req);
+    public ResponseEntity<Void> update(@PathVariable Long bookId, @RequestBody BookRequest req) {
+        bookServices.update(bookId, req);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

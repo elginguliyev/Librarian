@@ -65,10 +65,10 @@ public class BookServicesImpl implements BookService {
     }
 
     @Override
-    public void update(BookRequest request) {
+    public void update(Long bookId, BookRequest request) {
         User user = exsistUser.findUsername();
         Librarian librarian = librarianRepository.findByUsername(user.getUsername());
-        Book book = bookRepository.findByIdAndLibrarian(request.getId(), librarian);
+        Book book = bookRepository.findByIdAndLibrarian(bookId, librarian);
         mapper.map(request, book);
         bookRepository.save(book);
     }

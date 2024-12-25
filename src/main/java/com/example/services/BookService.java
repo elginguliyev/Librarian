@@ -13,7 +13,7 @@ public interface BookService {
 
     BookResponse getById(Long bookId);
 
-    void update(BookRequest request);
+    void update(Long boookId, BookRequest request);
 
     BookListResponse findBook(String name);
 

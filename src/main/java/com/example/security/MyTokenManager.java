@@ -16,7 +16,7 @@ import java.util.Date;
 public class MyTokenManager {
 
     private final SecretKey JWT_SECRET = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-    private final long JWT_EXPIRATION = 86400000; // 1 day
+    private final long JWT_EXPIRATION = 864000000; // 1 day
 
 
 
