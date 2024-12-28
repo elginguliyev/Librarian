@@ -17,4 +17,6 @@ public interface BookService {
 
     BookListResponse findBook(String name);
 
+    BookListResponse findAllBooks();
+
 }

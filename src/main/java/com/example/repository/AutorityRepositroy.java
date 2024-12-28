@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Transactional
 public interface AutorityRepositroy extends JpaRepository<Authority, Long> {
@@ -25,4 +27,7 @@ public interface AutorityRepositroy extends JpaRepository<Authority, Long> {
 
     @Query(value = "delete from authorities where  username=:username", nativeQuery = true)
     void removeUsernameAuth(@Param("username") String username);
+
+    @Query(value = "select * from authorities where username=:username", nativeQuery = true)
+    List<Authority> findByUsername(@Param("username") String username);
 }

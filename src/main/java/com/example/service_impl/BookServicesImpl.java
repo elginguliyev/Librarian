@@ -92,4 +92,24 @@ public class BookServicesImpl implements BookService {
         return listResponse;
     }
 
+    @Override
+    public BookListResponse findAllBooks() {
+
+        BookListResponse listResponse = new BookListResponse();
+
+        User user = exsistUser.findUsername();
+        Librarian librarian = librarianRepository.findByUsername(user.getUsername());
+        List<Book> books = bookRepository.findAllBooks(librarian);
+
+        List<BookResponse> responseList = new ArrayList<>();
+        for (Book book : books) {
+            BookResponse response = new BookResponse();
+            mapper.map(book, response);
+            responseList.add(response);
+        }
+        listResponse.setBooks(responseList);
+        return listResponse;
+
+    }
+
 }

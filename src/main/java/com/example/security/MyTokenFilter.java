@@ -7,11 +7,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RequiredArgsConstructor
@@ -29,8 +33,14 @@ public class MyTokenFilter extends OncePerRequestFilter {
 
         if (token != null && myTokenManager.validateToken(token) && !myTokenManager.isExpairedToken(token)) {
             String username = myTokenManager.getUsername(token);
+            List<String> roles = myTokenManager.getRolesFromToken(token);
+
+            List<GrantedAuthority> authorities = roles.stream()
+                    .map(role -> new SimpleGrantedAuthority(role))
+                    .collect(Collectors.toList());
+
             UserDetails userDetails = myUserDetailServices.loadUserByUsername(username);
-            Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 

@@ -22,7 +22,6 @@ public class Book {
     private String description;
     private String author;
     private int pageCount;
-    private Double price;
     private String language;
     private LocalDate publishDate;
     private LocalDateTime registerDate;

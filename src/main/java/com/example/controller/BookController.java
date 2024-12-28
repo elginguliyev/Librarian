@@ -56,4 +56,11 @@ public class BookController {
         BookListResponse listResponse = bookServices.findBook(bookName);
         return ResponseEntity.status(HttpStatus.CREATED).body(listResponse);
     }
+
+    @GetMapping(path = "books")
+    @PreAuthorize(value = "hasAuthority('ROLE_GET_BOOKS')")
+    public ResponseEntity<BookListResponse> findAllBook() {
+        BookListResponse listResponse = bookServices.findAllBooks();
+        return ResponseEntity.status(HttpStatus.CREATED).body(listResponse);
+    }
 }
