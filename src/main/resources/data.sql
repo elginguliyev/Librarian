@@ -17,15 +17,16 @@ values ('ROLE_ADD_BOOK', 0, 1),
        ('ROLE_CREAT_LIBRARY', 0, 1),
        ('ROLE_GET_LIBRARIAN', 1, 1),
        ('ROLE_DELETE_LIBRARIAN', 0, 1),
-       ('ROLE_UPDATE_LIBRARIAN', 0, 1);
+       ('ROLE_UPDATE_LIBRARIAN', 0, 1),
+       ('ROLE_GET_BOOKS', 1, 1);
 
 
-INSERT INTO librarian (name, surname, username, address, phone, email, password)
-VALUES ('Elgin', 'Guliyev', 'elgin', 'Baki', '1236', 'elgin@gmail.com', '$2a$12$ddKpitVCPkm10eLVHn/0P.fKZtDZUQYcV3d6G77JLeitMgWxgIjfu');
+INSERT INTO librarian (name, surname, username, address, phone, email)
+VALUES ('Elgin', 'Guliyev', 'elgin', 'Baki', '1236', 'elgin@gmail.com');
 
-INSERT INTO student (name, surname, username, address, phone, email, password, library_id)
-VALUES ('test1', 'test1', 'test1', 'Baki', '1237', 'test1@gmail.com', '{noop}test1', 1),
-       ('test2', 'test2', 'test2', 'Baki', '1238', 'test2@gmail.com', '{noop}test2', 1);
+INSERT INTO student (name, surname, username, address, phone, email, library_id)
+VALUES ('test1', 'test1', 'test1', 'Baki', '1237', 'test1@gmail.com',  1),
+       ('test2', 'test2', 'test2', 'Baki', '1238', 'test2@gmail.com', 1);
 
 INSERT INTO library (name, address, phone_number, email, established_date, librarian_id)
 VALUES ('Central Library', '123 Main St', '+1234567890', 'central.library@example.com', '2000-01-01', 1);

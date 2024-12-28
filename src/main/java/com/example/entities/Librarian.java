@@ -23,10 +23,7 @@ public class Librarian {
     private String address;
     private String phone;
     private String email;
-    private String password;
     private LocalDateTime registerDate;
-
-    private Long libraryId;
 
     @OneToMany(mappedBy = "librarian", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> books;
