@@ -57,10 +57,17 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.CREATED).body(listResponse);
     }
 
-    @GetMapping(path = "books")
-    @PreAuthorize(value = "hasAuthority('ROLE_GET_BOOKS')")
+    @GetMapping(path = "/all")
+    @PreAuthorize(value = "hasAuthority('ROLE_GET_BOOKS_FOR_LIBRARIAN')")
     public ResponseEntity<BookListResponse> findAllBook() {
         BookListResponse listResponse = bookServices.findAllBooks();
+        return ResponseEntity.status(HttpStatus.CREATED).body(listResponse);
+    }
+
+    @GetMapping(path = "/all/{libraryId}")
+//    @PreAuthorize(value = "hasAuthority('ROLE_GET_BOOKS')")
+    public ResponseEntity<BookListResponse> findAllBookForLibrary(@PathVariable Long libraryId) {
+        BookListResponse listResponse = bookServices.findAllBooksForLibrary(libraryId);
         return ResponseEntity.status(HttpStatus.CREATED).body(listResponse);
     }
 }

@@ -19,4 +19,6 @@ public interface BookService {
 
     BookListResponse findAllBooks();
 
+    BookListResponse findAllBooksForLibrary(Long libraryId);
+
 }
