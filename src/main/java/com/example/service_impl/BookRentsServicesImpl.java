@@ -94,4 +94,10 @@ public class BookRentsServicesImpl implements BookRentsService {
 
         return listResponse;
     }
+
+	@Override
+	public BookRentListResponse showLateBook() {
+		
+		return null;
+	}
 }

@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/student")
 public class StudentController {
 
-    private final UserService userServices;
-    private final StudentService studentServices;
+    private final UserService userServices ;
+    private final StudentService studentServices ;
 
 
     @PostMapping

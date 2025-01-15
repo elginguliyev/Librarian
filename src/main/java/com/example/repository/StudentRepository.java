@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-    @Query(value = "select * from student where username=?1, and id=?2", nativeQuery = true)
+    @Query(value = "select * from student where username=?1 and id=?2", nativeQuery = true)
     Student findByUsernameAndStudentId(String username, Long studentId);
 
     Student findByUsername(String username);

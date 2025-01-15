@@ -29,5 +29,7 @@ public class BookRents {
     private LocalDateTime rentsDate;
 
     private LocalDateTime returnDate;
+    
+    private Long dayCount;
 
 }

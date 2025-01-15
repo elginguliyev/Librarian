@@ -1,13 +1,15 @@
 package com.example.exception;
 
-import lombok.Data;
+
 
 import java.util.List;
 
+import lombok.Data;
 @Data
 public class ErrorResponse {
 
-   private   String message;
+	private String message;
 
-   private List<CustomErrorMsg> volidations;
+	private List<CustomErrorMsg> volidations;
+
 }

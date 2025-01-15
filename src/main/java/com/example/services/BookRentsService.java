@@ -15,6 +15,8 @@ public interface BookRentsService {
     BookRentListResponse showRentBook();
 
     BookRentListResponse showRetrunBook();
+    
+    BookRentListResponse showLateBook();
 
 
 }

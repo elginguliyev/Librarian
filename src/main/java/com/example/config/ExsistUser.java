@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class ExsistUser {
 
 
-    private final UserRepository  userRepository;
+    private final UserRepository userRepository;
 
     public User findUsername() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
