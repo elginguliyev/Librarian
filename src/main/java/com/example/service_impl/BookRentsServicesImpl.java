@@ -52,7 +52,7 @@ public class BookRentsServicesImpl implements BookRentsService {
     @Override
     public void returnBook(Long studentId, Long bookId) {
         BookRents bookRents = rentRepository.findBookRent(studentId, bookId);
-        bookRents.setReturnDate(LocalDateTime.now());
+        bookRents.setMustReturnDate(LocalDateTime.now());
 
         rentRepository.save(bookRents);
 
