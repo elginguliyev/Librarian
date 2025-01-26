@@ -95,9 +95,20 @@ public class BookRentsServicesImpl implements BookRentsService {
         return listResponse;
     }
 
-	@Override
-	public BookRentListResponse showLateBook() {
-		
-		return null;
-	}
+    @Override
+    public BookRentListResponse showLateBook() {
+        BookRentListResponse listResponse = new BookRentListResponse();
+
+        List<BookRents> bookRents = rentRepository.lateBook(LocalDateTime.now());
+        List<BookRentResponse> bookRentResponses = new ArrayList<>();
+
+        for (BookRents rents : bookRents) {
+            BookRentResponse rentResponse = new BookRentResponse();
+            mapper.map(rents, rentResponse);
+            bookRentResponses.add(rentResponse);
+        }
+
+        listResponse.setRentResponses(bookRentResponses);
+        return listResponse;
+    }
 }

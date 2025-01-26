@@ -30,6 +30,6 @@ public class BookRents {
 
     private LocalDateTime returnDate;
     
-    private Long dayCount;
+    private LocalDateTime mustReturnDate;
 
 }
