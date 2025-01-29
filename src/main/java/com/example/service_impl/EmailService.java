@@ -19,7 +19,7 @@ public class EmailService {
             MimeMessageHelper messageHelper = new MimeMessageHelper(message, true);
 
             messageHelper.setTo(toEmail);
-            messageHelper.setSubject(bookName);
+            messageHelper.setSubject("Gecikmis kitabiniz var !");
             messageHelper.setText(
                     "Hörmətli oxucu,<br><br>" +
                             "Sizin götürdüyünüz <b>" + bookName + "</b> adlı kitabın qaytarılma tarixi keçib. " +
